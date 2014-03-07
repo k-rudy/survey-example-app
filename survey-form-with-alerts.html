@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/rateit.css" />
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.rateit.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="well span8">
+        <div class="alert alert-error">
+          Errors
+          <ul>
+            <li>Please select a rating</li>
+            <li>Please leave a comment</li>
+          </ul>
+        </div>
+        <div class="alert alert-success">
+          Survey sent!
+        </div>
+        <h3>Survey</h3>
+        <div class="form-vertical">
+          <div class="control-group error">
+            <label class="control-label">Rating</label>
+            <div class="controls">
+              <select id="backing2b">
+                  <option value="0">Bad</option>
+                  <option value="1">OK</option>
+                  <option value="2">Great</option>
+                  <option value="3">Excellent</option>
+              </select>
+              <div class="rateit" data-rateit-backingfld="#backing2b"></div>
+            </div>
+          </div>
+          <div class="control-group error">  
+            <label class="control-label">Comment</label>
+            <div class="controls">
+              <textarea class="span8"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
