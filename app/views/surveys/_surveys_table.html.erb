@@ -30,7 +30,9 @@
             </td>
             <td>
               <% if survey.responded_at %>
-                <a data-toggle="modal" href="#myModal" >View</a>
+                <%= link_to 'View', '#', class: 'survey_details',
+                            data: { email: survey.email, created_at: survey.created_at, comment: survey.comment,
+                                    rating: survey.rating, 'no-turbolink' => true} %>
               <% end %>
             </td>
           </tr>
