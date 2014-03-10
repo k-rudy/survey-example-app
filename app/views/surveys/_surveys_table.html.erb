@@ -25,7 +25,8 @@
             <td><%= survey.created_at %></td>
             <td><%= survey.responded_at %></td>
             <td>
-              <div class="rateit" data-rateit-value="<%= survey.rating %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+              <div class="rateit" data-rateit-value="<%= survey.rating %>" data-rateit-ispreset="true" 
+                   data-rateit-max="3" data-rateit-readonly="true"></div>
             </td>
             <td>
               <% if survey.responded_at %>

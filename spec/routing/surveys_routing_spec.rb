@@ -13,7 +13,7 @@ describe SurveysController do
     end
     
     it "routes to #update" do
-      expect(put("/survey/qwe123")).to route_to("surveys#update", token: "qwe123")
+      expect(patch("/survey/qwe123")).to route_to("surveys#update", token: "qwe123")
     end
 
     it "routes to #create" do

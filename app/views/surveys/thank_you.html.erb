@@ -1,24 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @survey.email %>
-</p>
-
-<p>
-  <strong>Responded at:</strong>
-  <%= @survey.responded_at %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @survey.rating %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @survey.comment %>
-</p>
-
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<div class="container">
+  <%= render 'shared/flash_messages' %>
+</div>

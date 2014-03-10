@@ -8,7 +8,7 @@ SurveyApp::Application.routes.draw do
   
   get 'survey/thank_you' => 'surveys#thank_you'
   get 'survey/:token' => 'surveys#edit', as: :edit_survey
-  put 'survey/:token' => 'surveys#update', as: :update_survey
+  patch 'survey/:token' => 'surveys#update', as: :update_survey
 
   root to: 'surveys#index'
 end

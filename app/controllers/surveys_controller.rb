@@ -25,7 +25,8 @@ class SurveysController < ApplicationController
   # PUT /surveys/:token
   def update
     @survey.update_attributes(update_survey_params)
-    respond_with @survey, location: 'thank_you', notice: t('surveys.update_message')
+    flash[:notice] = t('surveys.update_message')
+    respond_with @survey, location: survey_thank_you_path
   end
 
   private
@@ -49,6 +50,6 @@ class SurveysController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def update_survey_params
-    params.require(:survey).permit(:rating, :comment)
+    params.require(:survey).permit(:rating, :comment).merge(responded_at: Time.current)
   end
 end

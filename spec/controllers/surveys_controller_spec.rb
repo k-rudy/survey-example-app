@@ -94,4 +94,42 @@ describe SurveysController do
       end
     end
   end
+  
+  describe 'PATCH update' do
+    
+    let!(:user) { create(:user) }
+    let!(:survey) { create(:survey, token: 'token') }
+    
+    before do
+      ActionMailer::Base.deliveries = []
+      login_user(user)
+    end
+    
+    describe 'with valid params' do
+      
+      it 'updates the survey' do
+        patch :update, token: 'token', survey: { rating: '5', comment: 'comment' }
+        expect(survey.reload.rating).to eq(5)
+        expect(survey.comment).to eq('comment')
+      end
+
+      it 'redirects to thank you page' do
+        patch :update, token: 'token', survey: { rating: '5', comment: 'comment' }
+        expect(response).to redirect_to(:survey_thank_you)
+      end
+    end
+
+    describe 'with invalid params' do
+      
+      it 'assigns an invalid survey as @survey' do
+        patch :update, token: 'token', survey: { rating: '', comment: '' }
+        expect(assigns(:survey)).to be_invalid
+      end
+
+      it 're-renders the "edit" template' do
+        patch :update, token: 'token', survey: { rating: '', comment: '' }
+        expect(response).to render_template('edit')
+      end
+    end
+  end
 end
