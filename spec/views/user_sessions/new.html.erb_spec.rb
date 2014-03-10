@@ -8,7 +8,6 @@ describe "user_sessions/new.html.erb" do
     assert_select "form[action=?][method=?]", user_sessions_path, "post" do
       assert_select "input#email[name=email]"
       assert_select "input#password[name=password]"
-      assert_select "input#remember_me[name=remember_me]"
     end
   end
 
