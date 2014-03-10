@@ -11,4 +11,19 @@ describe Survey do
     it { should allow_value(nil).for(:comment).on(:create) }
     it { should_not allow_value(nil).for(:comment).on(:update) }
   end
+  
+  describe 'scopes' do
+    
+    subject { Survey }
+    
+    describe '#pending' do
+      
+      let!(:new_survey) { create(:survey) }
+      let!(:answered_survey) { create(:survey, responded_at: 1.day.ago) }
+      
+      it 'returns only surveys with responded_at=nil' do
+        expect(subject.pending).to eq([ new_survey ])
+      end
+    end
+  end
 end
