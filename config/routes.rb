@@ -10,5 +10,5 @@ SurveyApp::Application.routes.draw do
   get 'survey/:token' => 'surveys#edit'
   put 'survey/:token' => 'surveys#update'
 
-  root to: 'survey#index'
+  root to: 'surveys#index'
 end
