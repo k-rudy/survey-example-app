@@ -1,0 +1,2 @@
+jQuery ->
+  $('#myModal').modal('hide');

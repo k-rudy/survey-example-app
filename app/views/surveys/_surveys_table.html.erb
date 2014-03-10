@@ -1,0 +1,40 @@
+<div class="row module">
+  <div class="span12">
+    <div class="form-search">
+      <input type="text" class="search-query">
+      <button type="submit" class="btn">Search</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Date and time sent</th>
+          <th>Date and time received</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= survey.email %></td>
+            <td><%= survey.created_at %></td>
+            <td><%= survey.responded_at %></td>
+            <td>
+              <div class="rateit" data-rateit-value="<%= survey.rating %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+            </td>
+            <td>
+              <% if survey.responded_at %>
+                <a data-toggle="modal" href="#myModal" >View</a>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
