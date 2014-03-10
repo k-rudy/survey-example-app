@@ -10,7 +10,12 @@ class Survey < ActiveRecord::Base
   
   default_scope ->{ order('updated_at desc') }
   
-  def by_token(token)
-    #TODO: add implementation
+  class << self
+    # Retrieves survey by token. Queries only pending surveys
+    #
+    # @return [ Survey ] survey found
+    def by_token(token)
+      Survey.pending.where(token: token).first
+    end
   end
 end

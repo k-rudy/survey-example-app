@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+  
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 
   def not_authenticated
     redirect_to login_url, :alert => t('login.first_login_message')

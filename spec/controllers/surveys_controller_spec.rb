@@ -59,4 +59,26 @@ describe SurveysController do
       end
     end
   end
+  
+  describe 'GET edit' do
+    
+    context 'when the survey hasnt been responded before' do
+      
+      let!(:survey) { create(:survey, token: 'token') } 
+      
+      it 'assigns @survey' do
+        get :edit, token: 'token'
+        expect(assigns(:survey)).to eq(survey)
+      end
+    end
+    
+    context 'when the survey has been responded before' do
+      
+      let!(:survey) { create(:survey, token: 'token', responded_at: 2.hours.ago) } 
+      
+      it 'raises ActionController::RoutingError' do
+        expect { get :edit, token: 'token' }.to raise_error(ActionController::RoutingError)
+      end
+    end
+  end
 end

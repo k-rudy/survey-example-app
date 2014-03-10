@@ -26,4 +26,28 @@ describe Survey do
       end
     end
   end
+  
+  describe '#by_token' do
+    
+    subject { Survey }
+    
+    context 'when the survey is pending' do
+      
+      let!(:survey) { create(:survey, token: 'token') }
+      let!(:survey_2) { create(:survey, token: '123') }
+      
+      it 'queries survey by token' do
+        expect(subject.by_token('token')).to eq(survey)
+      end
+    end
+    
+    context 'when the survey is not pending' do
+      
+      let!(:survey) { create(:survey, token: 'token', responded_at: 2.hours.ago) }
+      
+      it 'returns nil' do
+        expect(subject.by_token('token')).to be_nil
+      end
+    end
+  end
 end

@@ -28,9 +28,12 @@ class SurveysController < ApplicationController
 
   private
   
-  # Use callbacks to share common setup or constraints between actions.
+  # Queries survey by token
+  #
+  # @raise [ ActionController::RoutingError ] if the survey was not found
   def set_survey
     @survey = Survey.by_token(params[:token])
+    not_found unless @survey
   end
 
   # Only allow a trusted parameter "white list" through.
