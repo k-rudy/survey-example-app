@@ -10,6 +10,8 @@ class Survey < ActiveRecord::Base
   
   default_scope ->{ order('updated_at desc') }
   
+  before_create :generate_token
+  
   class << self
     # Retrieves survey by token. Queries only pending surveys
     #
@@ -17,5 +19,14 @@ class Survey < ActiveRecord::Base
     def by_token(token)
       Survey.pending.where(token: token).first
     end
+  end
+  
+  private
+  
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless Survey.exists?(token: random_token)
+    end unless self.token
   end
 end
