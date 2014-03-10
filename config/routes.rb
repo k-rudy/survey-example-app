@@ -1,5 +1,5 @@
 SurveyApp::Application.routes.draw do
-  resources :surveys, except: [ :show, :edit, :update ] 
+  resources :surveys, only: [ :index, :create ] 
 
   resources :user_sessions
   
@@ -7,8 +7,8 @@ SurveyApp::Application.routes.draw do
   get 'logout' => 'user_sessions#destroy', as: :logout
   
   get 'survey/thank_you' => 'surveys#thank_you'
-  get 'survey/:token' => 'surveys#edit'
-  put 'survey/:token' => 'surveys#update'
+  get 'survey/:token' => 'surveys#edit', as: :edit_survey
+  put 'survey/:token' => 'surveys#update', as: :update_survey
 
   root to: 'surveys#index'
 end

@@ -6,18 +6,20 @@ class SurveysController < ApplicationController
 
   # GET /surveys
   def index
-    @surveys = current_user.surveys
-  end
-
-  # GET /surveys/new
-  def new
     @survey = Survey.new
+    set_surveys
   end
 
   # POST /surveys
   def create
-    @survey = Survey.create(create_survey_params)
-    respond_with @survey, notice: t('surveys.create_message')
+    @survey =  Survey.create(create_survey_params)
+    if @survey.persisted?
+      UserMailer.survey_email(@survey).deliver
+      redirect_to surveys_path, notice: t('surveys.create_message')
+    else
+      set_surveys
+      render 'index'
+    end  
   end
   
   # PUT /surveys/:token
@@ -34,6 +36,10 @@ class SurveysController < ApplicationController
   def set_survey
     @survey = Survey.by_token(params[:token])
     not_found unless @survey
+  end
+  
+  def set_surveys
+    @surveys = current_user.surveys
   end
 
   # Only allow a trusted parameter "white list" through.

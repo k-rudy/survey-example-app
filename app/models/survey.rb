@@ -3,8 +3,8 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   
   validates :email, presence: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ }
-  validates :rating, presence: { on: :update }
-  validates :comment, presence: { on: :update }
+  validates :rating, presence: true, on: :update
+  validates :comment, presence: true, on: :update
   
   scope :pending, ->{ where(responded_at: nil) }
   

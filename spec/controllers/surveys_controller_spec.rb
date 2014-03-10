@@ -6,23 +6,30 @@ describe SurveysController do
 
   describe 'GET index' do
     
-    let!(:survey) { create(:survey) }
+    let!(:user) { create(:user) }
+    let!(:survey) { create(:survey, user: user) }
+    
+    before { login_user(user) }
     
     it 'assigns all surveys as @surveys' do
       get :index
       expect(assigns(:surveys)).to eq([ survey ])
     end
-  end
-
-  describe 'GET new' do
     
     it 'assigns a new survey as @survey' do
-      get :new
+      get :index
       expect(assigns(:survey)).to be_a_new(Survey)
     end
   end
 
   describe 'POST create' do
+    
+    let!(:user) { create(:user) }
+    
+    before do
+      ActionMailer::Base.deliveries = []
+      login_user(user)
+    end
     
     describe 'with valid params' do
       
@@ -42,6 +49,12 @@ describe SurveysController do
         post :create, survey: { email: 'test@mail.com' }
         expect(response).to redirect_to(:surveys)
       end
+      
+      it 'sends an email to the user' do
+        post :create, survey: { email: 'test@mail.com' }
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+        expect(ActionMailer::Base.deliveries.first.to).to eq([ 'test@mail.com' ])
+      end
     end
 
     describe 'with invalid params' do
@@ -53,9 +66,9 @@ describe SurveysController do
         expect(assigns(:survey)).to be_a_new(Survey)
       end
 
-      it 're-renders the "new" template' do
+      it 're-renders the "index" template' do
         post :create, survey: { email: '' }
-        expect(response).to render_template('new')
+        expect(response).to render_template('index')
       end
     end
   end

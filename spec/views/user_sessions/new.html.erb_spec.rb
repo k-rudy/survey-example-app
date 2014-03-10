@@ -15,7 +15,7 @@ describe "user_sessions/new.html.erb" do
     flash[:notice] = 'Test'
     render
 
-    assert_select '.alert' do |div|
+    assert_select '.alert' do |div| 
       expect(div.to_s).to include('Test')
     end
   end
