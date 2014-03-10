@@ -1,12 +1,22 @@
 <div class="row module">
   <div class="span12">
     <div class="well">
-      <h3>Send a new survey</h3>
-      <div class="form-horizontal">          
-        <label>Email</label>
-        <input type="text" placeholder="Email address">
-        <a class="btn" href="#">Send</a>
-      </div>
+      <%= render 'shared/flash_messages' %>
+      <%= render 'shared/error_messages', model: @survey %>
+      <%= form_for @survey, class: 'form-control' do |f| %>
+        <h3>Send a new survey</h3>   
+        <div class="row">
+          <div class="col-xs-1">      
+            <%= f.label :email, class: 'text-left control-label' %>
+          </div>
+          <div class="col-md-4">   
+            <%= f.text_field :email, placeholder: 'Email address', class: 'form-control' %>
+          </div>
+          <div class="col-md-2">   
+            <%= f.submit 'Send', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>  
     </div>
   </div>
 </div>
