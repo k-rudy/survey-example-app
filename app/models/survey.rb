@@ -19,6 +19,10 @@ class Survey < ActiveRecord::Base
     def by_token(token)
       Survey.pending.where(token: token).first
     end
+    
+    def search(query)
+      basic_search({ email: query, comment: query}, false)
+    end
   end
   
   private

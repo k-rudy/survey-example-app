@@ -50,4 +50,20 @@ describe Survey do
       end
     end
   end
+  
+  describe '#search' do
+    
+    subject { Survey }
+    
+    let!(:survey1) { create(:survey, email: 'test@user.com') }
+    let!(:survey2) { create(:survey, comment: 'ruby is a great language') } 
+    
+    it 'searches in email field' do
+      expect(subject.search('test@user.com')).to eq([ survey1 ])
+    end
+    
+    it 'searches in comment field' do
+      expect(subject.search('language')).to eq([ survey2 ])
+    end
+  end
 end
