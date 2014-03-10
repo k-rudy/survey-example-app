@@ -58,4 +58,7 @@ group :test do
 
   # Test factories lib
   gem 'factory_girl'
+  
+  # Simplifies testing common rails functionality like entity relations and validations
+  gem "shoulda-matchers"
 end
