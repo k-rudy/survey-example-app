@@ -30,4 +30,4 @@ bundle exec rake jobs:work
 ```
 
 
-Initial requirements can be found in (REQUIREMNETS.md)[https://github.com/k-rudy/coding-test-1-konstantin-rudy/blob/master/README.md]
+Initial requirements can be found in [REQUIREMNETS.md](https://github.com/k-rudy/coding-test-1-konstantin-rudy/blob/master/README.md)
