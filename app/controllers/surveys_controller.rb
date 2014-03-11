@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :require_login, only: [ :index, :create ]
+  before_action :require_login, only: [ :index, :create, :search ]
   before_action :set_survey, only: [ :edit, :update ]
   
   respond_to :html
@@ -27,6 +27,17 @@ class SurveysController < ApplicationController
     @survey.update_attributes(update_survey_params)
     flash[:notice] = t('surveys.update_message')
     respond_with @survey, location: survey_thank_you_path
+  end
+  
+  # POST /surveys/search
+  def search
+    if params[:query].present?
+      @surveys = Survey.search(params[:query], current_user.id)
+      @survey = Survey.new
+      render 'index'
+    else
+      redirect_to surveys_path
+    end
   end
 
   private

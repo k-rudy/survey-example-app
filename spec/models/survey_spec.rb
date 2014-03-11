@@ -55,15 +55,20 @@ describe Survey do
     
     subject { Survey }
     
-    let!(:survey1) { create(:survey, email: 'test@user.com') }
-    let!(:survey2) { create(:survey, comment: 'ruby is a great language') } 
+    let!(:user) { create(:user) }
+    let!(:survey1) { create(:survey, email: 'test@user.com', user: user) }
+    let!(:survey2) { create(:survey, comment: 'ruby is a great language', user: user) } 
     
     it 'searches in email field' do
-      expect(subject.search('test@user.com')).to eq([ survey1 ])
+      expect(subject.search('test@user.com', user.id)).to eq([ survey1 ])
     end
     
     it 'searches in comment field' do
-      expect(subject.search('language')).to eq([ survey2 ])
+      expect(subject.search('language', user.id)).to eq([ survey2 ])
+    end
+    
+    it 'searches only withing surveys of the user' do
+      expect(subject.search('language', 10)).to be_empty
     end
   end
 end

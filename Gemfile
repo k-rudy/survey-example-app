@@ -32,6 +32,9 @@ gem 'roadie'
 gem 'mailhopper'
 gem 'delayed_mailhopper'
 
+# Asynchronous job processing
+gem 'delayed_job_active_record'
+
 # Postgre full-text search
 gem 'textacular'
 

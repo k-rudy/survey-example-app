@@ -20,8 +20,8 @@ class Survey < ActiveRecord::Base
       Survey.pending.where(token: token).first
     end
     
-    def search(query)
-      basic_search({ email: query, comment: query}, false)
+    def search(query, user_id)
+      Survey.basic_search({ email: query, comment: query}, false).where(user_id: user_id)
     end
   end
   

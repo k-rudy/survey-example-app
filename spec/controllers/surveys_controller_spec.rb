@@ -132,4 +132,28 @@ describe SurveysController do
       end
     end
   end
+  
+  describe 'POST search' do
+    
+    let!(:user) { create(:user) }
+    let!(:survey) { create(:survey, token: 'token', comment: 'ruby is a great language', user: user) }
+    
+    before { login_user(user) }
+    
+    context 'when query parameter is present' do
+      
+      it 'searches by query and assigns @surveys array' do
+        post :search, query: 'language'
+        expect(assigns(:surveys)).to eq([ survey ])
+      end
+    end
+    
+    context 'when query parameter is empty' do
+      
+      it 'redirects to index' do
+        post :search, query: ''
+        expect(response).to redirect_to(surveys_url)
+      end
+    end
+  end
 end

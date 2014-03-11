@@ -23,5 +23,9 @@ describe SurveysController do
     it "routes to #thank_you" do
       expect(get("/survey/thank_you")).to route_to("surveys#thank_you")
     end
+    
+    it "routes to #search" do
+      expect(post("/survey/search")).to route_to("surveys#search")
+    end
   end
 end

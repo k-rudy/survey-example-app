@@ -1,0 +1,10 @@
+<div class="row module search">
+  <div class="span12">
+    <%= form_tag search_survey_path, method: :post do  %>
+      <div class="col-md-4">
+        <%= text_field_tag :query, params[:query], placeholder: 'Enter email or comment keyword', class: 'form-control' %>
+      </div>
+      <button type="submit" class="btn">Search</button>
+    <% end %>
+  </div>
+</div>
