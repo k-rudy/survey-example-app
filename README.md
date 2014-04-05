@@ -1,5 +1,8 @@
 #SurveyApp
 
+This is just a sample application that demonstrates my coding style and testing approaches.
+Initial requirements can be found in [REQUIREMNETS.md](https://github.com/k-rudy/survey-example-app/blob/master/REQUIREMENTS.md)
+
 ##Environment setup:
 
 Create a `database.yml` by copying it from example:
@@ -29,5 +32,3 @@ To run email worker do:
 bundle exec rake jobs:work
 ```
 
-
-Initial requirements can be found in [REQUIREMNETS.md](https://github.com/k-rudy/coding-test-1-konstantin-rudy/blob/master/README.md)
