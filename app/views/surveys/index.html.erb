@@ -1,0 +1,13 @@
+<div class="container">
+
+  <%= render 'new' %>
+  <%= render 'surveys_search' %>
+
+  <% if @surveys.any? %>
+  
+    <%= render 'surveys_table' %>
+    <%= render 'survey_details' %>
+  
+  <% end%>
+
+</div>

@@ -1,0 +1,17 @@
+<%
+  flash_mappings = {
+    notice: 'success',
+    info: 'info',
+    error: 'danger',
+    alert: 'warning'
+  }
+%>
+
+<% flash_mappings.each do |type, style| %>
+  <% if flash[type] %>
+    <div class="alert alert-<%= style %> alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= flash[type] %>
+    </div>
+  <% end %>
+<% end %>

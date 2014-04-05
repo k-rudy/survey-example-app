@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="well span8">
+      
+      <%= render 'shared/flash_messages' %>
+      <%= render 'shared/error_messages', model: @survey %>
+      
+      <h3>Survey</h3>
+
+      <%= form_for @survey, url: update_survey_path, class: 'form-vertical' do |f| %>
+        <div class="control-group error">
+          <label class="control-label">Rating</label>
+          <div class="controls">
+            <select id="backing2b" name="survey[rating]">
+                <option value="0">Bad</option>
+                <option value="1">OK</option>
+                <option value="2">Great</option>
+                <option value="3">Excellent</option>
+            </select>
+            <div class="rateit" data-rateit-backingfld="#backing2b"></div>
+          </div>
+        </div>
+        <div class="control-group">  
+          <%= f.label :comment, class: 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :comment, class: 'form-control' %>
+          </div>
+        </div>
+        <%= f.submit 'Send', class: 'btn btn-primary' %>
+      </div>
+    <% end %>  
+  </div>
+</div>

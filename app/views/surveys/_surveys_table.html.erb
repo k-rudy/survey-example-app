@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Date and time sent</th>
+          <th>Date and time received</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= survey.email %></td>
+            <td><%= survey.created_at %></td>
+            <td><%= survey.responded_at %></td>
+            <td>
+              <div class="rateit" data-rateit-value="<%= survey.rating %>" data-rateit-ispreset="true" 
+                   data-rateit-max="3" data-rateit-readonly="true"></div>
+            </td>
+            <td>
+              <% if survey.responded_at %>
+                <%= link_to 'View', '#', class: 'survey_details',
+                            data: { email: survey.email, created_at: survey.created_at, comment: survey.comment,
+                                    rating: survey.rating, 'no-turbolink' => true} %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

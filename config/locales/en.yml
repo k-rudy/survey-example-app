@@ -1,0 +1,10 @@
+en:
+  login:
+    fail_message: "Sorry, we couldn't log you in. Please try again."
+    success_message: "Login successful"
+    logout_message: "Logged out!"
+    first_login_message: 'First log in to view this page.'
+  
+  surveys:
+    create_message: 'Survey was successfully created and queued for sending.'
+    update_message: 'Survey was successfully submitted.'
